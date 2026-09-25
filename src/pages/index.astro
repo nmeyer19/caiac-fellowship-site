@@ -33,27 +33,35 @@ const legend = (Object.keys(CHAPTERS) as ChapterKey[])
   <p class="muted">{SITE.org} · {SITE.term}</p>
 
   <p class="lede">
-    An introduction to technical AI safety research, built on the <a href={SITE.arenaSite}>ARENA</a>{' '}
-    curriculum. We spend about half the course on
-    mechanistic interpretability and half on evals and alignment science.
+    The advanced technical fellowship is aimed towards hands-on 
+    exposure to frontier AI safety tools and methods. Fellows will be placed 
+    into (rotating) groups of 3-4 students that will work together through that
+    week's <a href={SITE.arenaSite}>ARENA</a> curriculum.
+
   </p>
   <p>
-    Each week has a page with concept notes and slides that review the ideas
-    before you start the exercises. Every page also has a PDF version.
+    Each week, I'll create a new page here with notes on the week's content.
   </p>
 
-  <h2>Follow along</h2>
-  <p>
-    All materials are open. You do not need to be in the fellowship to use them.
-  </p>
+  <h2>Getting started</h2>
   <ol>
-    <li>Fork or clone the <a href={SITE.arenaRepo}>ARENA repository</a>.</li>
-    <li>Follow the <a href={SITE.arenaSetup}>ARENA setup instructions</a>.</li>
-    <li>Each week, read the week page below, then do the ARENA exercises.</li>
+    <li>Fork or clone the <a href={SITE.arenaRepo}>ARENA repository</a></li>
+    <li>Follow the <a href={SITE.arenaSetup}>ARENA setup instructions</a></li>
+    <li>Whether you do these in Colab or an IDE like VSCode is up to you</li>
+    <li>
+      If you have time, take a look at{' '}
+      <a href="https://learn.arena.education/chapter0_fundamentals/00_prereqs/intro/">
+        Chapter 0.0 Prerequisites
+      </a>
+    </li>
   </ol>
-  <p>
-    <strong>Fellows:</strong> we meet once a week. Time and place: {SITE.meeting}.
-  </p>
+  
+  <h2>Weekly 90 minute meeting:</h2>
+  <ul>
+    <li>First 30: review of the previous week's content and any questions that came up</li>
+    <li>Second 30: short lecture/conceptual introduction to the new content</li>
+    <li>Last 30: getting started on the week's exercises</li>
+  </ul>
 
   <h2>Schedule</h2>
 
@@ -107,8 +115,8 @@ const legend = (Object.keys(CHAPTERS) as ChapterKey[])
 
   <h2>Contact</h2>
   <p>
-    Questions: {SITE.facilitator.name},{' '}
-    <a href={`mailto:${SITE.facilitator.email}`}>{SITE.facilitator.email}</a>.
+    {SITE.facilitator.name},{' '}
+    <a href={`mailto:${SITE.facilitator.email}`}>{SITE.facilitator.email}</a>
   </p>
 </Base>
 

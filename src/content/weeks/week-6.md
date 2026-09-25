@@ -1,16 +1,16 @@
 ---
-order: 7
+order: 6
 label: "Week 6"
-title: "ARENA 1.3.2 (Function Vectors & Model Steering)"
-start: 2026-11-08
-end: 2026-11-14
+title: "ARENA 1.5.4 (Superposition & SAEs)"
+start: 2026-11-01
+end: 2026-11-07
 arena:
-  section: "1.3.2"
-  url: https://learn.arena.education/chapter1_transformer_interp/12_function_vectors/
+  section: "1.5.4"
+  url: https://learn.arena.education/chapter1_transformer_interp/34_superposition/
 ready: false
 ---
 
-Steer model behavior with activation interventions, using the `nnsight` library.
+Replicate results from Anthropic's toy models of superposition work, and train sparse autoencoders (SAEs) to recover features.
 
 <!--
 Write this week's material below. Remove this comment when done, and set `ready: true` above.

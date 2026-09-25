@@ -1,13 +1,16 @@
 ---
-order: 11
+order: 10
 label: "Week 9"
-title: "Capstone Projects"
-start: 2026-12-06
-end: 2026-12-12
+title: "ARENA 4.2 (Science of Misalignment)"
+start: 2026-11-29
+end: 2026-12-05
+arena:
+  section: "4.2"
+  url: https://learn.arena.education/chapter4_alignment_science/2_science_misalignment/
 ready: false
 ---
 
-Final projects. Details to come.
+Two case studies in black-box investigation. The question: when a model does something harmful, how do we tell if it was scheming or only confused?
 
 <!--
 Write this week's material below. Remove this comment when done, and set `ready: true` above.

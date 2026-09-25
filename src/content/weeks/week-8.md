@@ -1,16 +1,16 @@
 ---
-order: 10
+order: 8
 label: "Week 8"
-title: "ARENA 4.2 (Science of Misalignment)"
-start: 2026-11-29
-end: 2026-12-05
+title: "ARENA 4.4 (LLM Psychology & Persona Vectors)"
+start: 2026-11-15
+end: 2026-11-21
 arena:
-  section: "4.2"
-  url: https://learn.arena.education/chapter4_alignment_science/2_science_misalignment/
+  section: "4.4"
+  url: https://learn.arena.education/chapter4_alignment_science/4_persona_vectors/
 ready: false
 ---
 
-Two case studies in black-box investigation. The question: when a model does something harmful, how do we tell if it was scheming or only confused?
+Replicate results from *The Assistant Axis*, including activation capping, then build a pipeline to extract persona vectors.
 
 <!--
 Write this week's material below. Remove this comment when done, and set `ready: true` above.
