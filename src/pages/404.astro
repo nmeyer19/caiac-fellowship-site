@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import AttentionMask from '../components/AttentionMask.astro';
+---
+<Base title="Out of distribution">
+  <div class="ood">
+    <AttentionMask class="attn attn-big" />
+    <h1>Out of distribution</h1>
+    <p class="lede muted">
+      This page is not in the training set. The model is guessing, and it
+      guessed <code>404</code>.
+    </p>
+    <p><a href="/">Back to the schedule</a></p>
+  </div>
+</Base>

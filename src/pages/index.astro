@@ -3,15 +3,37 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import { SITE } from '../site.config';
 import { range } from '../lib/dates';
+import { CHAPTERS, chapterOf, type ChapterKey } from '../lib/chapters';
 
 const weeks = (await getCollection('weeks')).sort((a, b) => a.data.order - b.data.order);
+
+const rows = weeks.map((w) => ({
+  entry: w,
+  chapter: chapterOf(w.data),
+  blurb: firstParagraph(w.body),
+}));
+
+// The one-line summary at the top of each week file, minus the template comment.
+function firstParagraph(body?: string) {
+  const text = (body ?? '').replace(/<!--[\s\S]*?-->/g, '').trim();
+  const first = text.split(/\n\s*\n/)[0]?.trim() ?? '';
+  return first.startsWith('#') ? '' : first.replace(/[`*]/g, '');
+}
+
+const iso = (d: Date) => d.toISOString().slice(0, 10);
+const termStart = iso(new Date(Math.min(...weeks.map((w) => +w.data.start))));
+const termEnd = iso(new Date(Math.max(...weeks.map((w) => +w.data.end))));
+
+const used = new Set(rows.map((r) => r.chapter));
+const legend = (Object.keys(CHAPTERS) as ChapterKey[])
+  .filter((k) => CHAPTERS[k].legend && used.has(k));
 ---
 <Base>
   <h1>{SITE.title}</h1>
   <p class="muted">{SITE.org} · {SITE.term}</p>
 
   <p class="lede">
-    An introduction to technical AI safety research, built on the <a href={SITE.arenaSite}>ARENA</a>
+    An introduction to technical AI safety research, built on the <a href={SITE.arenaSite}>ARENA</a>{' '}
     curriculum. We spend about half the course on
     mechanistic interpretability and half on evals and alignment science.
   </p>
@@ -34,18 +56,49 @@ const weeks = (await getCollection('weeks')).sort((a, b) => a.data.order - b.dat
   </p>
 
   <h2>Schedule</h2>
+
+  <div
+    class="term-status no-print"
+    data-term-start={termStart}
+    data-term-end={termEnd}
+    data-meeting-day={SITE.meetingDay ?? undefined}
+  >
+    <div class="term-bar"><div class="term-fill"></div></div>
+    <p class="term-caption"><strong class="term-now"></strong><span class="term-detail"></span></p>
+  </div>
+
+  <div class="legend no-print">
+    {legend.map((k) => (
+      <span class={`legend-item ch-${k}`}>{CHAPTERS[k].name}</span>
+    ))}
+    <button class="blurb-toggle" type="button" aria-pressed="false">show descriptions</button>
+  </div>
+
   <table class="schedule">
     <thead>
       <tr><th>Week</th><th>Dates</th><th>Topic</th></tr>
     </thead>
     <tbody>
-      {weeks.map((w) => (
-        <tr class={w.data.page ? '' : 'off'}>
-          <td>{w.data.label}</td>
+      {rows.map(({ entry: w, chapter, blurb }) => (
+        <tr
+          class={`ch-${chapter}${w.data.page ? '' : ' off'}`}
+          data-start={iso(w.data.start)}
+          data-end={iso(w.data.end)}
+          data-label={w.data.label}
+          data-title={w.data.title}
+        >
+          <td>{w.data.label}<span class="here">you are here</span></td>
           <td class="dates">{range(w.data.start, w.data.end)}</td>
           <td>
             {w.data.page ? <a href={`/weeks/${w.id}/`}>{w.data.title}</a> : w.data.title}
             {w.data.note && <span class="note">{w.data.note}</span>}
+            {blurb && <p class="blurb">{blurb}</p>}
+            {w.data.page && (
+              <span class="chips">
+                <span class="chip">{CHAPTERS[chapter].name}</span>
+                {w.data.ready && <span class="chip chip-posted">Posted</span>}
+              </span>
+            )}
           </td>
         </tr>
       ))}
@@ -58,3 +111,60 @@ const weeks = (await getCollection('weeks')).sort((a, b) => a.data.order - b.dat
     <a href={`mailto:${SITE.facilitator.email}`}>{SITE.facilitator.email}</a>.
   </p>
 </Base>
+
+<script>
+  const DAY = 86_400_000;
+  const parse = (s: string) => {
+    const [y, m, d] = s.split('-').map(Number);
+    return Date.UTC(y, m - 1, d);
+  };
+  const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
+
+  const status = document.querySelector<HTMLElement>('.term-status');
+  const table = document.querySelector<HTMLTableElement>('.schedule');
+
+  if (status && table) {
+    const now = new Date();
+    const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    const start = parse(status.dataset.termStart!);
+    const end = parse(status.dataset.termEnd!) + DAY;
+
+    const pct = Math.max(0, Math.min(1, (today - start) / (end - start)));
+    status.querySelector<HTMLElement>('.term-fill')!.style.width = `${(pct * 100).toFixed(1)}%`;
+
+    const rows = [...table.querySelectorAll<HTMLTableRowElement>('tr[data-start]')];
+    const current = rows.find(
+      (r) => today >= parse(r.dataset.start!) && today <= parse(r.dataset.end!),
+    );
+    current?.classList.add('current');
+
+    const nowEl = status.querySelector<HTMLElement>('.term-now')!;
+    const detailEl = status.querySelector<HTMLElement>('.term-detail')!;
+
+    if (today < start) {
+      detailEl.textContent = `Starts in ${plural(Math.round((start - today) / DAY), 'day')}.`;
+    } else if (today >= end) {
+      detailEl.textContent = 'Term complete.';
+    } else if (current) {
+      const left = Math.round((parse(current.dataset.end!) - today) / DAY);
+      nowEl.textContent = current.dataset.label!;
+      const parts = [current.dataset.title!, left > 0 ? `${plural(left, 'day')} left` : 'last day'];
+
+      const meetingDay = Number(status.dataset.meetingDay);
+      if (Number.isInteger(meetingDay)) {
+        const until = (meetingDay - now.getDay() + 7) % 7;
+        parts.push(until === 0 ? 'meeting today' : `next meeting in ${plural(until, 'day')}`);
+      }
+      detailEl.textContent = ` — ${parts.join(' · ')}`;
+    } else {
+      detailEl.textContent = `${Math.round(pct * 100)}% through the term.`;
+    }
+  }
+
+  const blurbToggle = document.querySelector('.blurb-toggle');
+  blurbToggle?.addEventListener('click', () => {
+    const on = table?.classList.toggle('show-blurbs');
+    blurbToggle.setAttribute('aria-pressed', String(on));
+    blurbToggle.textContent = on ? 'hide descriptions' : 'show descriptions';
+  });
+</script>

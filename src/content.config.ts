@@ -15,6 +15,9 @@ const weeks = defineCollection({
     arena: z
       .object({ section: z.string(), url: z.string().url() })
       .optional(),
+    chapter: z                         // optional; otherwise derived from `arena.section`
+      .enum(['fundamentals', 'interp', 'evals', 'alignment', 'capstone', 'break'])
+      .optional(),
     page: z.boolean().default(true),   // false = schedule row only, no page
     ready: z.boolean().default(false), // false = page shows "materials coming soon"
     slides: z.string().optional(),     // link or /slides/file.pdf

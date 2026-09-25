@@ -1,0 +1,30 @@
+---
+// A causal attention mask: strong on the first key position and the diagonal,
+// noisy elsewhere. Deterministic, so the build output is stable.
+interface Props { class?: string }
+const { class: className = 'attn' } = Astro.props;
+
+const N = 8;
+const frac = (x: number) => x - Math.floor(x);
+
+const cells = [];
+for (let q = 0; q < N; q++) {
+  for (let k = 0; k <= q; k++) {
+    const noise = frac(Math.sin(q * 12.9898 + k * 78.233) * 43758.5453);
+    const o = k === 0 ? 0.85 : k === q ? 0.7 : 0.1 + 0.45 * noise;
+    cells.push({ q, k, o: Math.round(o * 100) / 100, d: ((q * 3 + k) % 10) * 0.45 });
+  }
+}
+---
+<svg class={className} viewBox="0 0 32 32" aria-hidden="true">
+  {cells.map((c) => (
+    <rect
+      x={c.k * 4}
+      y={c.q * 4}
+      width="3"
+      height="3"
+      rx="0.5"
+      style={`--o:${c.o};--d:${c.d}s`}
+    />
+  ))}
+</svg>

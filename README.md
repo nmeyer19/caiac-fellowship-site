@@ -16,9 +16,10 @@ npm run dev                        # http://localhost:4321
 |---|---|
 | Site name, facilitator, meeting time/place, ARENA links | `src/site.config.ts` |
 | Schedule rows and week pages | `src/content/weeks/*.md` (one file per row) |
+| Chapter names and grouping | `src/lib/chapters.ts` |
 | Slides | `public/slides/` |
 | Generated PDFs | `public/pdfs/` |
-| Styles | `src/styles/global.css` |
+| Styles and chapter colors | `src/styles/global.css` |
 
 ## Publish a week
 
@@ -47,9 +48,26 @@ ready: false                 # true when the material is posted
 page: true                   # false = schedule row only (e.g. a break week)
 slides: /slides/week-2.pdf   # optional
 note: "Optional week"        # optional; small note under the topic in the schedule
+chapter: interp              # optional; normally derived from the ARENA section
 ```
 
 To add, move, or rename a week, edit or add a file here. The homepage updates itself.
+
+The first paragraph of the file (above the template comment) is the one-line
+description. It shows on the week page and behind "show descriptions" on the schedule.
+
+## Chapter colors
+
+Each row is colored by ARENA chapter, and the same color runs across the top of the
+week page. The chapter comes from `arena.section` — `0.x` is Fundamentals, `1.x` Mech
+Interp, `3.x` LLM Evals, `4.x` Alignment Science; a week with no ARENA section is a
+Capstone, and `page: false` is a Break. Set `chapter:` in the front matter to override.
+Names live in `src/lib/chapters.ts`, colors in the `--ch-*` variables in `global.css`.
+
+## Meeting countdown
+
+Set `meetingDay` in `src/site.config.ts` (`0` = Sunday … `6` = Saturday) and the
+schedule shows how many days until the next session. Leave it `null` to hide it.
 
 ## Math and code
 

@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
 import { SITE } from '../site.config';
+import AttentionMask from '../components/AttentionMask.astro';
 
 interface Props { title?: string; description?: string }
 const { title, description = `${SITE.title}, ${SITE.term}. Open materials for the ${SITE.org}'s ARENA-based fellowship.` } = Astro.props;
@@ -15,11 +16,26 @@ const fullTitle = title ? `${title} · ${SITE.title}` : `${SITE.title} · ${SITE
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>
+      // Runs before paint so a saved theme choice does not flash.
+      try {
+        const t = localStorage.getItem('theme');
+        if (t) document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
   </head>
   <body>
     <header class="site-header">
+      <AttentionMask />
       <a class="site-name" href="/">{SITE.title}</a>
       <span class="term">{SITE.term}</span>
+      <span class="header-spacer"></span>
+      <button class="theme-toggle" type="button" aria-label="Switch between light and dark">
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+          <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5" />
+          <path d="M8 1.5a6.5 6.5 0 000 13z" fill="currentColor" />
+        </svg>
+      </button>
     </header>
     <main>
       <slot />
@@ -32,6 +48,48 @@ const fullTitle = title ? `${title} · ${SITE.title}` : `${SITE.title} · ${SITE
       <p>
         Exercises are from <a href={SITE.arenaSite}>ARENA</a>. Our notes and slides are open for anyone to use.
       </p>
+      <button class="steer-toggle no-print" type="button" aria-expanded="false">// steer</button>
+      <div class="steer no-print" hidden>
+        <label for="steer-range">activation_steering</label>
+        <input id="steer-range" type="range" min="-180" max="180" value="0" step="1" />
+        <output for="steer-range">0°</output>
+        <button type="button" data-steer-reset>ablate</button>
+      </div>
     </footer>
+
+    <script>
+      const root = document.documentElement;
+
+      const toggle = document.querySelector('.theme-toggle');
+      toggle?.addEventListener('click', () => {
+        const dark = matchMedia('(prefers-color-scheme: dark)').matches;
+        const current = root.dataset.theme || (dark ? 'dark' : 'light');
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch {}
+      });
+
+      const steerToggle = document.querySelector('.steer-toggle');
+      const steerPanel = document.querySelector('.steer');
+      const range = document.querySelector('#steer-range') as HTMLInputElement | null;
+      const readout = document.querySelector('output[for="steer-range"]');
+
+      steerToggle?.addEventListener('click', () => {
+        const open = steerPanel?.hasAttribute('hidden');
+        if (open) steerPanel?.removeAttribute('hidden');
+        else steerPanel?.setAttribute('hidden', '');
+        steerToggle.setAttribute('aria-expanded', String(open));
+      });
+
+      const applySteer = (deg: string) => {
+        root.style.setProperty('--steer', `${deg}deg`);
+        if (readout) readout.textContent = `${deg}°`;
+      };
+      range?.addEventListener('input', () => applySteer(range.value));
+      document.querySelector('[data-steer-reset]')?.addEventListener('click', () => {
+        if (range) range.value = '0';
+        applySteer('0');
+      });
+    </script>
   </body>
 </html>
