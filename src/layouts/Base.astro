@@ -1,0 +1,37 @@
+---
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+import { SITE } from '../site.config';
+
+interface Props { title?: string; description?: string }
+const { title, description = `${SITE.title}, ${SITE.term}. Open materials for the ${SITE.org}'s ARENA-based fellowship.` } = Astro.props;
+const fullTitle = title ? `${title} · ${SITE.title}` : `${SITE.title} · ${SITE.term}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-name" href="/">{SITE.title}</a>
+      <span class="term">{SITE.term}</span>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>
+        {SITE.org} · Facilitator: {SITE.facilitator.name}{' '}
+        (<a href={`mailto:${SITE.facilitator.email}`}>{SITE.facilitator.email}</a>)
+      </p>
+      <p>
+        Exercises are from <a href={SITE.arenaSite}>ARENA</a>. Our notes and slides are open for anyone to use.
+      </p>
+    </footer>
+  </body>
+</html>

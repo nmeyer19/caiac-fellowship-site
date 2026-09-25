@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site.config';
+import { range } from '../lib/dates';
+
+const weeks = (await getCollection('weeks')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base>
+  <h1>{SITE.title}</h1>
+  <p class="muted">{SITE.org} · {SITE.term}</p>
+
+  <p class="lede">
+    An introduction to technical AI safety research, built on the <a href={SITE.arenaSite}>ARENA</a>
+    curriculum. We spend about half the course on
+    mechanistic interpretability and half on evals and alignment science.
+  </p>
+  <p>
+    Each week has a page with concept notes and slides that review the ideas
+    before you start the exercises. Every page also has a PDF version.
+  </p>
+
+  <h2>Follow along</h2>
+  <p>
+    All materials are open. You do not need to be in the fellowship to use them.
+  </p>
+  <ol>
+    <li>Fork or clone the <a href={SITE.arenaRepo}>ARENA repository</a>.</li>
+    <li>Follow the <a href={SITE.arenaSetup}>ARENA setup instructions</a>.</li>
+    <li>Each week, read the week page below, then do the ARENA exercises.</li>
+  </ol>
+  <p>
+    <strong>Fellows:</strong> we meet once a week. Time and place: {SITE.meeting}.
+  </p>
+
+  <h2>Schedule</h2>
+  <table class="schedule">
+    <thead>
+      <tr><th>Week</th><th>Dates</th><th>Topic</th></tr>
+    </thead>
+    <tbody>
+      {weeks.map((w) => (
+        <tr class={w.data.page ? '' : 'off'}>
+          <td>{w.data.label}</td>
+          <td class="dates">{range(w.data.start, w.data.end)}</td>
+          <td>
+            {w.data.page ? <a href={`/weeks/${w.id}/`}>{w.data.title}</a> : w.data.title}
+            {w.data.note && <span class="note">{w.data.note}</span>}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+
+  <h2>Contact</h2>
+  <p>
+    Questions: {SITE.facilitator.name},{' '}
+    <a href={`mailto:${SITE.facilitator.email}`}>{SITE.facilitator.email}</a>.
+  </p>
+</Base>

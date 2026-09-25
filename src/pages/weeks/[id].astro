@@ -1,0 +1,49 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../site.config';
+import { range } from '../../lib/dates';
+
+export async function getStaticPaths() {
+  const all = (await getCollection('weeks')).sort((a, b) => a.data.order - b.data.order);
+  const pages = all.filter((w) => w.data.page);
+  return pages.map((entry, i) => ({
+    params: { id: entry.id },
+    props: { entry, prev: pages[i - 1], next: pages[i + 1] },
+  }));
+}
+
+const { entry, prev, next } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+
+// The PDF link appears only after `npm run pdf` has made the file.
+const pdfPath = `/pdfs/${entry.id}.pdf`;
+const hasPdf = fs.existsSync(path.join(process.cwd(), 'public', pdfPath));
+---
+<Base title={`${d.label}: ${d.title}`}>
+  <p class="print-only muted">{SITE.title} · {SITE.term}</p>
+  <h1>{d.label}: {d.title}</h1>
+  <p class="week-meta">{range(d.start, d.end)}</p>
+
+  <div class="actions">
+    {d.arena && <a class="button" href={d.arena.url}>ARENA {d.arena.section} exercises</a>}
+    {d.slides && <a class="button" href={d.slides}>Slides</a>}
+    {hasPdf && <a class="button" href={pdfPath} download>Download PDF</a>}
+  </div>
+
+  {!d.ready && (
+    <p class="notice no-print">Materials for this week are not posted yet.</p>
+  )}
+
+  <article>
+    <Content />
+  </article>
+
+  <nav class="pager">
+    <span>{prev && <a href={`/weeks/${prev.id}/`}>← {prev.data.label}: {prev.data.title}</a>}</span>
+    <span>{next && <a href={`/weeks/${next.id}/`}>{next.data.label}: {next.data.title} →</a>}</span>
+  </nav>
+</Base>
