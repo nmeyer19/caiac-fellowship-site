@@ -10,6 +10,39 @@ arena:
 ready: true
 ---
 
+## This week's exercises
+
+Do these in order. Importance is ARENA's own rating, out of 5. Times are estimates.
+
+| Section | Exercise | Importance | Time |
+| --- | --- | --- | --- |
+| 0.0 | einops & broadcasting (first half of the set) | 3/5 | 25 min |
+| 0.0 | einsum | 4/5 | 15 min |
+| 0.2 | `ReLU` | 3/5 | 5 min |
+| 0.2 | `Linear` | 4/5 | 10 min |
+| 0.2 | Simple MLP | 4/5 | 15 min |
+| 0.2 | Training loop (read) and validation loop | 5/5 | 30 min |
+| 0.2 | `Conv2d` | 3/5 | 15 min |
+| 0.2 | `BatchNorm2d` | 3/5 | 20 min |
+| 0.2 | `AveragePool` | 2/5 | 5 min |
+| 0.2 | `ResidualBlock` | 4/5 | 25 min |
+| 0.2 | `BlockGroup` | 4/5 | 12 min |
+| 0.2 | `ResNet34` | 4/5 | 35 min |
+| 0.2 | Verify your model's predictions | 3/5 | 10 min |
+| 0.2 | Aside: hooks (read) | — | 10 min |
+| 0.3 | `opt_fn_with_sgd` | 4/5 | 15 min |
+| 0.3 | Adam | 3/5 | 20 min |
+| 0.4 | `log_back` | 3/5 | 8 min |
+| 0.4 | `unbroadcast` | 3/5 | 15 min |
+| 0.4 | `multiply_back0` and `multiply_back1` | 2/5 | 12 min |
+| 0.4 | `forward_and_back` | 4/5 | 15 min |
+
+**Total: about 5 hours.** If you fall behind, cut in this order: read the `BatchNorm2d` solution instead of writing it, skip the rest of the einops set, then run the `opt_fn_with_sgd` solution instead of writing it.
+
+**Skip:** 0.1 Ray Tracing, 0.5 VAEs & GANs, 0.3 Weights & Biases and distributed training, the 0.2 conv-from-scratch bonus, and 0.4 sections 2–3.
+
+**Stretch goals:** 0.4 section 2 (build a small autograd engine, about 2 hours), the SGD and AdamW classes in 0.3, or logging a training run with Weights & Biases.
+
 ## Tensors, Einops, and Einsum
 This section is going to be super brief, and I’m not really going to explicitly walk through any of this. Instead, as is kind of the theme of this entire program, I think it’s best to just learn by doing.
 
