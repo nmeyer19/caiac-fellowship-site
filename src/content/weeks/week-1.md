@@ -14,7 +14,7 @@ ready: true
 
 | Section | Exercise | Importance | Time |
 | --- | --- | --- | --- |
-| 0.0 | einops & broadcasting (first half of the set) | 3/5 | 25 min |
+| 0.0 | einops operations & broadcasting | 3/5 | 45 min |
 | 0.0 | einsum | 4/5 | 15 min |
 | 0.2 | `ReLU` | 3/5 | 5 min |
 | 0.2 | `Linear` | 4/5 | 10 min |
