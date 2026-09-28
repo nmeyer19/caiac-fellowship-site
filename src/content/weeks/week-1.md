@@ -12,8 +12,6 @@ ready: true
 
 ## This week's exercises
 
-Do these in order. Importance is ARENA's own rating, out of 5. Times are estimates.
-
 | Section | Exercise | Importance | Time |
 | --- | --- | --- | --- |
 | 0.0 | einops & broadcasting (first half of the set) | 3/5 | 25 min |
@@ -37,11 +35,7 @@ Do these in order. Importance is ARENA's own rating, out of 5. Times are estimat
 | 0.4 | `multiply_back0` and `multiply_back1` | 2/5 | 12 min |
 | 0.4 | `forward_and_back` | 4/5 | 15 min |
 
-**Total: about 5 hours.** If you fall behind, cut in this order: read the `BatchNorm2d` solution instead of writing it, skip the rest of the einops set, then run the `opt_fn_with_sgd` solution instead of writing it.
-
-**Skip:** 0.1 Ray Tracing, 0.5 VAEs & GANs, 0.3 Weights & Biases and distributed training, the 0.2 conv-from-scratch bonus, and 0.4 sections 2–3.
-
-**Stretch goals:** 0.4 section 2 (build a small autograd engine, about 2 hours), the SGD and AdamW classes in 0.3, or logging a training run with Weights & Biases.
+As you work through these exercises (and in general going forward), if you find yourself stuck or spending way more time on an exercise than the estimate, have someone in your group peek at the answer or prompt an LLM for hints. No single exercise is worth laboring over too too much.
 
 ## Tensors, Einops, and Einsum
 This section is going to be super brief, and I’m not really going to explicitly walk through any of this. Instead, as is kind of the theme of this entire program, I think it’s best to just learn by doing.
