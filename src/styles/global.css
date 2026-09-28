@@ -80,6 +80,7 @@ code { font-family: var(--font-mono); font-size: 0.88em; background: var(--soft)
 pre { background: var(--soft); padding: 0.9rem; overflow-x: auto; border-radius: 6px; border: 1px solid var(--line); }
 pre code { background: none; padding: 0; }
 img { max-width: 100%; height: auto; }
+article img { display: block; margin: 1.5rem auto; }
 .katex-display { overflow-x: auto; overflow-y: hidden; }
 
 /* Chapter accent. Set by a .ch-* class; everything else reads --ch. */
