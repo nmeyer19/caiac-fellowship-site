@@ -79,6 +79,41 @@ We might also choose to "clip" gradients above a predetermined limit to stop a s
 There are also a number of hyperparamters we'll need to "tune," each of which can have massive effects on our training. The **learning rate** is a particularly important one. Too high a learning rate and our loss will never converge, too low and learning can stall (or just take a long ass time). We'll often first **warmup** our learning rate by starting it near 0 and raising it linearlly over the first few steps. We do this because our weights are initialized randomly and full-sized steps can be destabilizing. We'll also often use a **learning rate scheduler** to dynamically change the learning rate over the course of training to take large steps early on during training to make fast progress and incrementally smaller steps over time to help the optimizer settle into a nice minimum. 
 
 ## Convolutional Neural Networks
-It's often easiest to start with CNNs for image recognition. 
+It's often easiest to start with CNNs for image recognition, and here, we'll start with a small black and white 9x9 pixel image.
+
+![image 5](../images/ch0_smiley.png)
+
+Computationally, we know each pixel of the image is represented by a number  representing the intensity of the pixel along the black-white gradient. So, to the computer, it looks something more like:
+
+![image 6](../images/ch0_comp_smiley.png)
+
+We're assuming here, as in the picture, that there are only 3 different gradients of the color intensity. We then have something called a **filter** (also known as a **kernel**) which is a small grid of weights (parameters). Let's say here that our filter is 3x3 and it is initialized randomly, like any other weights in a neural network:
+
+![image 7](../images/ch0_filter.png)
+
+A **convolution** then is this mathematical process in which we slide our filter over "patches" of our original image, in this case 3x3 pixels at a time. The output is the sum-product of the filter weights and the patch values.
+
+![image 8](../images/ch0_convolution.png)
+
+We'll then do this for each patch of our input image, resulting in a 3x3 output array of this convolutonal layer. Notice here that the output layer is of a lower dimensionality than the input layer (just 49 numbers versus the original 81).
+
+What ends up happening with this is that our network, over time, is learning important relational information about the pixels being procesed together. This is known as  locality. 
+
+It can get a bit more complex with more input channels (like with color images in RGB) and more convolutional layers, but we'll skip that for this. The important point to take away from CNNs is that it is a way that a neural network is able to process a given piece of information along with its surrounding *context*. The reason why CNNs are included here is because they were, in a way, a precursor for and form the intuitive basis for processing multiple tokens at a time in natural language processing. 
+
+Some quick definitions of CNN concepts:
+- **Kernel size:** refers to both the size of the filter/kernel and the size of a patch
+- **Stride:** how far the kernel moves each step. Sometimes, we we'll want to slide more than just 1 pixel over.
+- **Padding:** sometimes we'll want to add zeros to the edges of the input (often if we want to emphasize learning more info around the edges).
+- **Channels:** refer to the number of separate filters. For example, when we process an RGB image, we'll have 3 separate numbers for each pixel (224, 196, 181) to denote the pixel's intensity along each of the red, green, and blue spectrums (instead of just the black-white spectrum as earlier). Each of these numbers sits on its own 9x9 array. We'll need 3 separate kernels to process each of these different channels.
+- **Pooling:** a common downsampling technique in CNNs used to reduce the dimenionality across a given dimension while retaining whatever relevant information we want (max pooling, mean pooling, global pooling). Pooling can also help the model learn more generalizable image recognition jobs and reduce overfitting.
 
 ## Residual Networks
+In theory, a deeper network just simply has far more repesentational power than a shallow network. But the problem was that deep networks are super suseptible to exploding and vanishing gradients. They also put the input data through so many transformations that information can easily get lost or just become too unrecognizable as it goes through the network. 
+
+The fix to this was to add **residual (or skip) connections**. In a simple feed-forward network, a given layer operates only on the outputs of the previous layer. Skip connections instead add back in information from an earlier position into the input fed to our layer.
+
+![image 9](../images/ch0_skip.png)
+
+The has the effect of making training much more stable, preventing vanishing/exploding gradients, and making deep networks real good. Skip connections are the direct ancestor of the ***residual stream***, one of the most important aspects of the transformer architecture and our main object of study in much of Chapter 1 (and mechinterp in general). 
+
