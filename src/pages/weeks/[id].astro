@@ -44,9 +44,11 @@ const hasPdf = fs.existsSync(path.join(process.cwd(), 'public', pdfPath));
     <p class={`notice no-print ch-${chapter}`}>Materials for this week are not posted yet.</p>
   )}
 
-  <article>
-    <Content />
-  </article>
+  {d.ready && (
+    <article>
+      <Content />
+    </article>
+  )}
 
   <nav class="pager">
     <span>{prev && <a href={`/weeks/${prev.id}/`}>← {prev.data.label}: {prev.data.title}</a>}</span>
