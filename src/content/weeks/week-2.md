@@ -7,7 +7,7 @@ end: 2026-10-10
 arena:
   section: "1.1"
   url: https://learn.arena.education/chapter1_transformer_interp/01_transformers/
-ready: true
+ready: false
 ---
 
 ## This week's exercises
