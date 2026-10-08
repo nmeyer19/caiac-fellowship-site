@@ -33,8 +33,7 @@ ready: true
 | 0.4 | `log_back` | 3/5 | 8 min |
 | 0.4 | `unbroadcast` | 3/5 | 15 min |
 | 0.4 | `multiply_back0` and `multiply_back1` | 2/5 | 12 min |
-| 0.4 | `forward_and_bac
-k` | 4/5 | 15 min |
+| 0.4 | `forward_and_back` | 4/5 | 15 min |
 
 As you work through these exercises (and in general going forward), if you find yourself stuck or spending way more time on an exercise than the estimate, have someone in your group peek at the answer or prompt an LLM for hints. No single exercise is worth laboring over too too much.
 
