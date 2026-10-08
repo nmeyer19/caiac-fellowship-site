@@ -87,9 +87,9 @@ Word embeddings are vector representations of words (tokens). They carry a lot o
 
 Ok, so how do we actually do this? For a sentence of length $d\_sequence$, we have a list of token IDs that are fed into our transformer:
 
-$$(id_1, ..., id_{d\_sequence})$$
+$$(id_1, ..., id_{(d\_sequence)})$$
 
-These IDs are first converted into one-hot representations, which are typically denoted as standard-basis vectors $e_t \in \mathbb{R}^{d\_vocab}$, where the element at index $t$ is $1$ (counting from $0$) and all others entries are $0$.
+These IDs are first converted into one-hot representations, which are typically denoted as standard-basis vectors $e_t \in \mathbb{R}^{(d\_vocab)}$, where the element at index $t$ is $1$ (counting from $0$) and all others entries are $0$.
 
 These don't really have any additional representational capacity than our scalar token IDs, but they allow us to index into our embedding matrix using linear algebra.
 
@@ -97,7 +97,7 @@ Let's take an example. The GPT-2 tokenizer's ID for the token "` monkey`" is $21
 
 So, after we get our one-hot representations of every token in our sequence, we have a $d\_sequence$ number of $d\_vocab$-dimensional vectors. We stack these together, creating our first **tensor**, $E$!
 
-$$(e_{id_1}, ..., e_{id_{d\_sequence}}) = E \in \mathbb{R}^{d\_sequence \times d\_vocab}$$
+$$(e_{id_1}, ..., e_{id_{(d\_sequence)}}) = E \in \mathbb{R}^{(d\_sequence \times d\_vocab)}$$
 
 Each row in our tensor $E$ corresponds to the one-hot representation of a given token in our sequence. 
 
@@ -105,7 +105,7 @@ We can then use this tensor to transform these one-hot encodings into their corr
 
 We have an embedding matrix
 
-$$W_E \in \mathbb{R}^{d\_vocab \times d\_model}$$
+$$W_E \in \mathbb{R}^{(d\_vocab \times d\_model)}$$
 
 Each row of this matrix contains the $d\_model$-dimensional vector (our word embeddings) for each word (token) in our $d\_vocab$-length vocabulary.
 
@@ -113,7 +113,7 @@ Each row of this matrix contains the $d\_model$-dimensional vector (our word emb
 
 Anyways, we take our one-hot encodings and index into our embedding matrix:
 
-$$X_E = EW_E \in \mathbb{R}^{d\_sequence \times d\_model}$$
+$$X_E = EW_E \in \mathbb{R}^{(d\_sequence \times d\_model)}$$
 
 So, we now have a tensor $X_E$ containing $d\_model$-dimensional word embeddings for each of our tokens in $d\_sequence$!
 
@@ -131,22 +131,22 @@ Our positional embedding follows much of the same process as the word embedding,
 
 With this, no matter the sentence, the 3rd token in a sequence always gets the same positional embedding. For our sentence, we then have the matrix $P$ such that:
 
-$$(e_{1}, ..., e_{d\_sequence}) = P \in \mathbb{R}^{d\_sequence \times max\_context}$$
+$$(e_{1}, ..., e_{d\_sequence}) = P \in \mathbb{R}^{(d\_sequence \times max\_context)}$$
 
 Similar to before, we have our positional embedding matrix
 
-$$W_P \in \mathbb{R}^{max\_context \times d\_model}$$
+$$W_P \in \mathbb{R}^{(max\_context \times d\_model)}$$
 
 Which has a learned row for each position up to the max context length. But, a sequence of length $d\_sequence$, like ours, uses only the first $d\_sequence$ rows.
 
 And again we index into this matrix using our one-hot positional encodings
 
-$$X_P = PW_P \in \mathbb{R}^{d\_sequence \times d\_model}$$
+$$X_P = PW_P \in \mathbb{R}^{(d\_sequence \times d\_model)}$$
 
 ## The Residual Stream 
 Putting these together, we get the start of our residual stream:
 
-$$X^{(0)} = X_E + X_P = EW_E + PW_P \in \mathbb{R}^{d\_sequence \times d\_model}$$
+$$X^{(0)} = X_E + X_P = EW_E + PW_P \in \mathbb{R}^{(d\_sequence \times d\_model)}$$
 
 We write $X^{(0)}$ for the embeddings before they enter the first transformer layer. $X^{(l)}$ then represents the residual stream *after* block $l$. Block $l$ reads $X^{(l-1)}$ and writes $X^{(l)}$. 
 
@@ -177,29 +177,29 @@ As we're all aware, attention is the crux of the transformer architecture—both
 
 We'll start by thinking through what attention looks like in a single attention head. First, let's recall the shape of what we're processing. We have our (normalized) residual stream coming into our attention head:
 
-$$X^{(l-1)} \in \mathbb{R}^{d\_sequence \times d\_model}$$
+$$X^{(l-1)} \in \mathbb{R}^{(d\_sequence \times d\_model)}$$
 
-Which we can think of as $d\_sequence$ vectors $x^{(l-1)}_i \in \mathbb{R}^{d\_model}$ stacked together.
+Which we can think of as $d\_sequence$ vectors $x^{(l-1)}_i \in \mathbb{R}^{(d\_model)}$ stacked together.
 
-In a given attention head, we have three weight matrices $W_Q, W_K, W_V \in \mathbb{R}^{d\_model \times d\_head}$ and their corresponding bias vectors $b_Q, b_K, b_V \in \mathbb{R}^{d\_head}$, which we use to derive each token's query, key, and value *vectors*:
+In a given attention head, we have three weight matrices $W_Q, W_K, W_V \in \mathbb{R}^{(d\_model \times d\_head)}$ and their corresponding bias vectors $b_Q, b_K, b_V \in \mathbb{R}^{(d\_head)}$, which we use to derive each token's query, key, and value *vectors*:
 
-$$q_i = x^{(l-1)}_iW_Q + b_Q \in \mathbb{R}^{d\_head}$$
-$$k_i = x^{(l-1)}_iW_K + b_K \in \mathbb{R}^{d\_head}$$
-$$v_i = x^{(l-1)}_iW_V + b_V \in \mathbb{R}^{d\_head}$$
+$$q_i = x^{(l-1)}_iW_Q + b_Q \in \mathbb{R}^{(d\_head)}$$
+$$k_i = x^{(l-1)}_iW_K + b_K \in \mathbb{R}^{(d\_head)}$$
+$$v_i = x^{(l-1)}_iW_V + b_V \in \mathbb{R}^{(d\_head)}$$
 
 Using the queries and keys, we then calculate **attention scores** for every (query, key) combo:
 
-$$s_{m,n} = q_mk_n^\top \times \frac{1}{\sqrt{d\_head}}$$
+$$s_{m,n} = q_mk_n^\top \times \frac{1}{\sqrt{(d\_head)}}$$
 
 For some $m,n \in \{1, ..., d\_sequence\}$. 
 
 We do this $\forall \space m,n$ to get a matrix of attention scores, because, remember the entire sequence is going through the attention head at once. So across the whole sequence, we have the query, key, and value matrices
 
-$$Q = X^{(l-1)}W_Q + b_Q \in \mathbb{R}^{d\_sequence \times d\_head}$$
-$$K = X^{(l-1)}W_K + b_K \in \mathbb{R}^{d\_sequence \times d\_head}$$
-$$V = X^{(l-1)}W_V + b_V \in \mathbb{R}^{d\_sequence \times d\_head}$$
+$$Q = X^{(l-1)}W_Q + b_Q \in \mathbb{R}^{(d\_sequence \times d\_head)}$$
+$$K = X^{(l-1)}W_K + b_K \in \mathbb{R}^{(d\_sequence \times d\_head)}$$
+$$V = X^{(l-1)}W_V + b_V \in \mathbb{R}^{(d\_sequence \times d\_head)}$$
 
-$$S = \frac{QK^\top}{\sqrt{d\_head}} \in \mathbb{R}^{d\_sequence \times d\_sequence}$$
+$$S = \frac{QK^\top}{\sqrt{d\_head}} \in \mathbb{R}^{(d\_sequence \times d\_sequence)}$$
 
 We can think of each attention score representing the compatibility between a given query and key, i.e. how well token n's key matches token m's query (its "question"). We divide by the square root of the head's dimensionality just to keep the scores in a range that doesn't saturate the softmax that follows. 
 
@@ -211,15 +211,15 @@ To fix this, we add a **causal mask** to our score matrix, where we set the scor
 
 As shown in the image, we then softmax over the key dimension, where each row becomes a probability vector over which we basically get weights for how much a given token should "attend to" the other tokens that have come before it. This pattern of weights is known as the "attention pattern." So, we now have a lower-triangular matrix 
 
-$$A = softmax(mask(S)) \in \mathbb{R}^{d\_sequence \times d\_sequence}$$
+$$A = softmax(mask(S)) \in \mathbb{R}^{(d\_sequence \times d\_sequence)}$$
 
 We then multiply our attention pattern by our value vectors, which we recall are $d\_sequence$ stacked $d\_head$ vectors. 
 
-$$Z = AV \in \mathbb{R}^{d\_sequence \times d\_head}$$
+$$Z = AV \in \mathbb{R}^{(d\_sequence \times d\_head)}$$
 
-Here each token's output is a weighted sum of the value vectors of the tokens it attends to. We then project back out using $W_O \in \mathbb{R}^{d\_head \times d\_model}$ to the residual stream's dimensionality:
+Here each token's output is a weighted sum of the value vectors of the tokens it attends to. We then project back out using $W_O \in \mathbb{R}^{(d\_head \times d\_model)}$ to the residual stream's dimensionality:
 
-$$O = ZW_O + b_O = AVW_O + b_O \in \mathbb{R}^{d\_sequence \times d\_model}$$
+$$O = ZW_O + b_O = AVW_O + b_O \in \mathbb{R}^{(d\_sequence \times d\_model)}$$
 
 (With more than one head, $b_O$ is added only once, after the heads' outputs are summed.)
 
@@ -276,7 +276,7 @@ The MLP output is added back to the residual stream to give the output of block 
 
 
 ## Output
-Finally, we apply one last layernorm and unembed into logits over our vocabulary with our unembedding matrix $W_U \in \mathbb{R}^{d\_model \times d\_vocab}$ (and bias). We then softmax over the logits to get a probability distribution for the next token. So in sum, roughly speaking:
+Finally, we apply one last layernorm and unembed into logits over our vocabulary with our unembedding matrix $W_U \in \mathbb{R}^{(d\_model \times d\_vocab)}$ (and bias). We then softmax over the logits to get a probability distribution for the next token. So in sum, roughly speaking:
 
 $output = softmax(layernorm(X^{(L)})W_U + b_U)$
 
