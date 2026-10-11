@@ -184,7 +184,9 @@ Which we can think of as $d\_sequence$ vectors $x^{(l-1)}_i \in \mathbb{R}^{(d\_
 In a given attention head, we have three weight matrices $W_Q, W_K, W_V \in \mathbb{R}^{(d\_model \times d\_head)}$ and their corresponding bias vectors $b_Q, b_K, b_V \in \mathbb{R}^{(d\_head)}$, which we use to derive each token's query, key, and value *vectors*:
 
 $$q_i = x^{(l-1)}_iW_Q + b_Q \in \mathbb{R}^{(d\_head)}$$
+
 $$k_i = x^{(l-1)}_iW_K + b_K \in \mathbb{R}^{(d\_head)}$$
+
 $$v_i = x^{(l-1)}_iW_V + b_V \in \mathbb{R}^{(d\_head)}$$
 
 Using the queries and keys, we then calculate **attention scores** for every (query, key) combo:
@@ -196,7 +198,9 @@ For some $m,n \in \{1, ..., d\_sequence\}$.
 We do this $\forall \space m,n$ to get a matrix of attention scores, because, remember the entire sequence is going through the attention head at once. So across the whole sequence, we have the query, key, and value matrices
 
 $$Q = X^{(l-1)}W_Q + b_Q \in \mathbb{R}^{(d\_sequence \times d\_head)}$$
+
 $$K = X^{(l-1)}W_K + b_K \in \mathbb{R}^{(d\_sequence \times d\_head)}$$
+
 $$V = X^{(l-1)}W_V + b_V \in \mathbb{R}^{(d\_sequence \times d\_head)}$$
 
 $$S = \frac{QK^\top}{\sqrt{d\_head}} \in \mathbb{R}^{(d\_sequence \times d\_sequence)}$$
@@ -238,7 +242,9 @@ As is the common theme of this program, the best way to wrap your head around th
 Basically, we have 
 
 $$X^{(l-1)} \in \mathbb{R}^{[batch\_size \space \times \space d\_seq \space \times \space d\_model]}$$
+
 $$W_Q, W_K, W_V \in \mathbb{R}^{[n\_heads \space \times \space d\_model \space \times \space d\_head]}$$
+
 $$b_Q, b_K, b_V \in \mathbb{R}^{[n\_heads \space \times \space d\_head]}$$
 
 Through which we obtain the queries, keys, and values for every token in a sequence across every example in the batch for every attention head in the layer. But notice, given the dimensionality of these tensors, we can't just multiply things like we have been. We have to be broadcasting across and reducing over particular dimensions to get out the shapes that we want. For instance, 
