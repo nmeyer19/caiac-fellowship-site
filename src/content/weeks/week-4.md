@@ -1,31 +1,30 @@
 ---
 order: 4
 label: "Week 4"
-title: "ARENA 3.1 (Intro to Evals)"
+title: "ARENA 1.2 (Intro to Mech Interp)"
 start: 2026-10-18
 end: 2026-10-24
 arena:
-  section: "3.1"
-  url: https://learn.arena.education/chapter3_llm_evals/01_intro_evals/
+  section: "1.2"
+  url: https://learn.arena.education/chapter1_transformer_interp/02_intro_mech_interp/
 ready: false
 ---
 
-Design threat models and specifications for evaluating a property of a model.
+Use TransformerLens to inspect a trained transformer, find induction heads, and reverse-engineer the circuit behind them.
 
-<!--
-Write this week's material below. Remove this comment when done, and set `ready: true` above.
+https://learn.arena.education/chapter1_transformer_interp/02_intro_mech_interp/1-transformerlens-introduction/
+https://www.youtube.com/watch?v=lfwT79Hgytc
+https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=_Jzi6YHRHKP1JziwdE02qdYZ
+https://www.lesswrong.com/posts/TvrfY4c9eaGLeyDkE/induction-heads-illustrated
 
-Suggested sections:
-## Before you start      (what to read or watch first)
-## Key ideas             (the concept review)
 
-Math: inline $x^2$. For display math, put $$ on its own line above and below:
-$$
-\sum_i x_i
-$$
-## Exercises             (which ARENA parts to do, and which to skip)
-## Discussion questions
-## Further reading
+## Transformerlens
 
-Slides: put the file in public/slides/ and set `slides: /slides/<file>.pdf` above.
--->
+
+## Induction Heads
+
+
+## Hooks
+
+
+## Reverse Engineering Induction Circuits

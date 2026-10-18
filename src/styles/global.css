@@ -182,11 +182,6 @@ article th { font-family: var(--font-mono); font-size: 0.7rem; text-transform: u
 .schedule tr.current td:first-child::before {
   content: "▸ "; color: var(--accent);
 }
-.here {
-  display: none; margin-left: 0.4rem; font-family: var(--font-mono);
-  font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;
-}
-.schedule tr.current .here { display: inline; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.3rem; }
 .chip {

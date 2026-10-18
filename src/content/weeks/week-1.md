@@ -10,6 +10,8 @@ arena:
 ready: true
 ---
 
+Build the deep learning basics from scratch: tensor manipulation with einops, a ResNet, optimizers, and backpropagation.
+
 ## This week's exercises
 
 | Section | Exercise | Importance | Time |

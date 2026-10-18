@@ -43,26 +43,6 @@ const legend = (Object.keys(CHAPTERS) as ChapterKey[])
     Each week, I'll create a new page here with notes on the week's content.
   </p>
 
-  <h2>Getting started</h2>
-  <ol>
-    <li>Fork or clone the <a href={SITE.arenaRepo}>ARENA repository</a></li>
-    <li>Follow the <a href={SITE.arenaSetup}>ARENA setup instructions</a></li>
-    <li>Whether you do these in Colab or an IDE like VSCode is up to you</li>
-    <li>
-      If you have time, take a look at{' '}
-      <a href="https://learn.arena.education/chapter0_fundamentals/00_prereqs/intro/">
-        Chapter 0.0 Prerequisites
-      </a>
-    </li>
-  </ol>
-  
-  <h2>Weekly 90 minute meeting:</h2>
-  <ul>
-    <li>First 30: review of the previous week's content and any questions that came up</li>
-    <li>Second 30: short lecture/conceptual introduction to the new content</li>
-    <li>Last 30: getting started on the week's exercises</li>
-  </ul>
-
   <h2>Schedule</h2>
 
   <div
@@ -95,7 +75,7 @@ const legend = (Object.keys(CHAPTERS) as ChapterKey[])
           data-label={w.data.label}
           data-title={w.data.title}
         >
-          <td>{w.data.label}<span class="here">you are here</span></td>
+          <td>{w.data.label}</td>
           <td class="dates">{range(w.data.start, w.data.end)}</td>
           <td>
             {w.data.page ? <a href={`/weeks/${w.id}/`}>{w.data.title}</a> : w.data.title}

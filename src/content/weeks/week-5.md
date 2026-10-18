@@ -1,16 +1,16 @@
 ---
 order: 5
 label: "Week 5"
-title: "ARENA 3.2 (Dataset Generation)"
+title: "ARENA 3.1 (Intro to Evals)"
 start: 2026-10-25
 end: 2026-10-31
 arena:
-  section: "3.2"
-  url: https://learn.arena.education/chapter3_llm_evals/02_dataset_gen/
+  section: "3.1"
+  url: https://learn.arena.education/chapter3_llm_evals/01_intro_evals/
 ready: false
 ---
 
-Use LLMs to generate evaluation datasets, then improve their quality.
+Design threat models and specifications for evaluating a property of a model.
 
 <!--
 Write this week's material below. Remove this comment when done, and set `ready: true` above.

@@ -10,6 +10,8 @@ arena:
 ready: true
 ---
 
+Build and train GPT-2 from scratch, from tokenization and attention through to sampling text.
+
 ## This week's exercises
 
 | Section | Exercise | Importance | Time |
