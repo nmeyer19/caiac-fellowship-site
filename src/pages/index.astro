@@ -122,7 +122,7 @@ const legend = (Object.keys(CHAPTERS) as ChapterKey[])
 
     const rows = [...table.querySelectorAll<HTMLTableRowElement>('tr[data-start]')];
     const current = rows.find(
-      (r) => today >= parse(r.dataset.start!) && today <= parse(r.dataset.end!),
+      (r) => today >= parse(r.dataset.start!) && today < parse(r.dataset.end!),
     );
     current?.classList.add('current');
 

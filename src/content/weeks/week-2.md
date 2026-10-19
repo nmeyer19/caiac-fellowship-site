@@ -2,8 +2,8 @@
 order: 2
 label: "Week 2"
 title: "ARENA 1.1 (Transformers from Scratch)"
-start: 2026-10-04
-end: 2026-10-10
+start: 2026-10-06
+end: 2026-10-13
 arena:
   section: "1.1"
   url: https://learn.arena.education/chapter1_transformer_interp/01_transformers/

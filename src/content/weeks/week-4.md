@@ -2,8 +2,8 @@
 order: 4
 label: "Week 4"
 title: "ARENA 1.2 (Intro to Mech Interp)"
-start: 2026-10-18
-end: 2026-10-24
+start: 2026-10-20
+end: 2026-10-27
 arena:
   section: "1.2"
   url: https://learn.arena.education/chapter1_transformer_interp/02_intro_mech_interp/

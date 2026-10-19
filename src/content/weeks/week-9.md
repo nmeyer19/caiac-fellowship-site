@@ -2,8 +2,8 @@
 order: 10
 label: "Week 9"
 title: "ARENA 4.2 (Science of Misalignment)"
-start: 2026-11-29
-end: 2026-12-05
+start: 2026-12-01
+end: 2026-12-08
 arena:
   section: "4.2"
   url: https://learn.arena.education/chapter4_alignment_science/2_science_misalignment/

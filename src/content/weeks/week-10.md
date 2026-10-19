@@ -2,8 +2,8 @@
 order: 11
 label: "Week 10"
 title: "Capstone Projects"
-start: 2026-12-06
-end: 2026-12-12
+start: 2026-12-08
+end: 2026-12-15
 ready: false
 ---
 

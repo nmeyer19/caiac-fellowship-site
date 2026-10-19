@@ -2,8 +2,8 @@
 order: 7
 label: "Week 7"
 title: "ARENA 1.3.2 (Function Vectors & Model Steering)"
-start: 2026-11-08
-end: 2026-11-14
+start: 2026-11-10
+end: 2026-11-17
 arena:
   section: "1.3.2"
   url: https://learn.arena.education/chapter1_transformer_interp/12_function_vectors/

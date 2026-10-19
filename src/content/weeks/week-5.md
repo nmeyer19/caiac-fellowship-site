@@ -2,8 +2,8 @@
 order: 5
 label: "Week 5"
 title: "ARENA 3.1 (Intro to Evals)"
-start: 2026-10-25
-end: 2026-10-31
+start: 2026-10-27
+end: 2026-11-03
 arena:
   section: "3.1"
   url: https://learn.arena.education/chapter3_llm_evals/01_intro_evals/

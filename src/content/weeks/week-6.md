@@ -2,8 +2,8 @@
 order: 6
 label: "Week 6"
 title: "ARENA 3.2 (Dataset Generation)"
-start: 2026-11-01
-end: 2026-11-07
+start: 2026-11-03
+end: 2026-11-10
 arena:
   section: "3.2"
   url: https://learn.arena.education/chapter3_llm_evals/02_dataset_gen/

@@ -2,8 +2,8 @@
 order: 8
 label: "Week 8"
 title: "ARENA 4.4 (LLM Psychology & Persona Vectors)"
-start: 2026-11-15
-end: 2026-11-21
+start: 2026-11-17
+end: 2026-11-24
 arena:
   section: "4.4"
   url: https://learn.arena.education/chapter4_alignment_science/4_persona_vectors/

@@ -2,8 +2,8 @@
 order: 1
 label: "Week 1"
 title: "ARENA Chapter 0 (Fundamentals)"
-start: 2026-09-27
-end: 2026-10-03
+start: 2026-09-29
+end: 2026-10-06
 arena:
   section: "Chapter 0"
   url: https://learn.arena.education/chapter0_fundamentals/
