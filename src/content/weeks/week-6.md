@@ -10,8 +10,6 @@ arena:
 ready: false
 ---
 
-Use LLMs to generate evaluation datasets, then improve their quality.
-
 <!--
 Write this week's material below. Remove this comment when done, and set `ready: true` above.
 

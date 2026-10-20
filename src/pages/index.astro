@@ -10,15 +10,7 @@ const weeks = (await getCollection('weeks')).sort((a, b) => a.data.order - b.dat
 const rows = weeks.map((w) => ({
   entry: w,
   chapter: chapterOf(w.data),
-  blurb: firstParagraph(w.body),
 }));
-
-// The one-line summary at the top of each week file, minus the template comment.
-function firstParagraph(body?: string) {
-  const text = (body ?? '').replace(/<!--[\s\S]*?-->/g, '').trim();
-  const first = text.split(/\n\s*\n/)[0]?.trim() ?? '';
-  return first.startsWith('#') ? '' : first.replace(/[`*]/g, '');
-}
 
 const iso = (d: Date) => d.toISOString().slice(0, 10);
 const termStart = iso(new Date(Math.min(...weeks.map((w) => +w.data.start))));
@@ -59,7 +51,6 @@ const legend = (Object.keys(CHAPTERS) as ChapterKey[])
     {legend.map((k) => (
       <span class={`legend-item ch-${k}`}>{CHAPTERS[k].name}</span>
     ))}
-    <button class="blurb-toggle" type="button" aria-pressed="false">show descriptions</button>
   </div>
 
   <table class="schedule">
@@ -67,7 +58,7 @@ const legend = (Object.keys(CHAPTERS) as ChapterKey[])
       <tr><th>Week</th><th>Dates</th><th>Topic</th></tr>
     </thead>
     <tbody>
-      {rows.map(({ entry: w, chapter, blurb }) => (
+      {rows.map(({ entry: w, chapter }) => (
         <tr
           class={`ch-${chapter}${w.data.page ? '' : ' off'}`}
           data-start={iso(w.data.start)}
@@ -80,7 +71,6 @@ const legend = (Object.keys(CHAPTERS) as ChapterKey[])
           <td>
             {w.data.page ? <a href={`/weeks/${w.id}/`}>{w.data.title}</a> : w.data.title}
             {w.data.note && <span class="note">{w.data.note}</span>}
-            {blurb && <p class="blurb">{blurb}</p>}
             {w.data.page && (
               <span class="chips">
                 <span class="chip">{CHAPTERS[chapter].name}</span>
@@ -148,11 +138,4 @@ const legend = (Object.keys(CHAPTERS) as ChapterKey[])
       detailEl.textContent = `${Math.round(pct * 100)}% through the term.`;
     }
   }
-
-  const blurbToggle = document.querySelector('.blurb-toggle');
-  blurbToggle?.addEventListener('click', () => {
-    const on = table?.classList.toggle('show-blurbs');
-    blurbToggle.setAttribute('aria-pressed', String(on));
-    blurbToggle.textContent = on ? 'hide descriptions' : 'show descriptions';
-  });
 </script>

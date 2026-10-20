@@ -10,8 +10,6 @@ arena:
 ready: false
 ---
 
-Replicate results from *The Assistant Axis*, including activation capping, then build a pipeline to extract persona vectors.
-
 <!--
 Write this week's material below. Remove this comment when done, and set `ready: true` above.
 

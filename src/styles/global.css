@@ -162,11 +162,6 @@ article th { font-family: var(--font-mono); font-size: 0.7rem; text-transform: u
 .legend-item::before {
   content: ""; width: 9px; height: 9px; border-radius: 2px; background: var(--ch);
 }
-.blurb-toggle {
-  margin-left: auto; font: inherit; background: none; color: var(--muted);
-  border: 1px solid var(--line); border-radius: 4px; padding: 0.2rem 0.5rem; cursor: pointer;
-}
-.blurb-toggle:hover { color: var(--text); border-color: var(--muted); }
 
 /* Schedule */
 .schedule { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
@@ -193,8 +188,6 @@ article th { font-family: var(--font-mono); font-size: 0.7rem; text-transform: u
   border: 1px solid currentColor; border-radius: 3px; padding: 0.05rem 0.35rem;
 }
 
-.blurb { display: none; margin: 0.35rem 0 0; font-size: 0.85rem; color: var(--muted); max-width: 40rem; }
-.schedule.show-blurbs .blurb { display: block; }
 
 @media (max-width: 34rem) {
   .schedule thead { display: none; }

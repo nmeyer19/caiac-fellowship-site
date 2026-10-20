@@ -7,8 +7,6 @@ end: 2026-12-15
 ready: false
 ---
 
-Final projects. Details to come.
-
 <!--
 Write this week's material below. Remove this comment when done, and set `ready: true` above.
 

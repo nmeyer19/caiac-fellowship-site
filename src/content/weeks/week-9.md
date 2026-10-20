@@ -10,8 +10,6 @@ arena:
 ready: false
 ---
 
-Two case studies in black-box investigation. The question: when a model does something harmful, how do we tell if it was scheming or only confused?
-
 <!--
 Write this week's material below. Remove this comment when done, and set `ready: true` above.
 

@@ -10,8 +10,6 @@ arena:
 ready: false
 ---
 
-Design threat models and specifications for evaluating a property of a model.
-
 <!--
 Write this week's material below. Remove this comment when done, and set `ready: true` above.
 

@@ -10,8 +10,6 @@ arena:
 ready: false
 ---
 
-Steer model behavior with activation interventions, using the `nnsight` library.
-
 <!--
 Write this week's material below. Remove this comment when done, and set `ready: true` above.
 
