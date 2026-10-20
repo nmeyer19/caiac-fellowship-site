@@ -121,20 +121,20 @@ If you pass `remove_batch_dim=True` to `run_with_cache`, the batch dimension is 
 
 Hook names follow the pattern **`blocks.{layer}.{sublayer}.hook_{name}`**. Below are some of the main ones we'll use the most:
 
-| Full name (layer 0) | Short name | What it is | Shape | Week 2 Math Notation |
-| --- | --- | --- | --- | --- |
-| `hook_embed` | `embed` | Token embeddings | `[batch, seq, d_model]` | $X_E$ |
-| `hook_pos_embed` | `pos_embed` | Positional embeddings | `[batch, seq, d_model]` | $X_P$ |
-| `blocks.0.hook_resid_pre` | `resid_pre` | Residual stream into the block | `[batch, seq, d_model]` | $X^{(l-1)}$ |
-| `blocks.0.attn.hook_q` (also `_k`, `_v`) | `q`, `k`, `v` | Queries, keys, values per head | `[batch, seq, n_heads, d_head]` | $Q, K, V$ |
-| `blocks.0.attn.hook_attn_scores` | `attn_scores` | Scores after scale and mask, before softmax | `[batch, n_heads, seqQ, seqK]` | $S$ |
-| `blocks.0.attn.hook_pattern` | `pattern` | Attention probabilities | `[batch, n_heads, seqQ, seqK]` | $A$ |
-| `blocks.0.attn.hook_z` | `z` | Weighted sum of values, per head | `[batch, seq, n_heads, d_head]` | $Z$ |
-| `blocks.0.hook_attn_out` | `attn_out` | Attention output, summed over heads | `[batch, seq, d_model]` | $\text{Attn}^{(l)}(\cdot)$ |
-| `blocks.0.hook_resid_mid` | `resid_mid` | Residual stream after attention, before MLP | `[batch, seq, d_model]` | $\tilde{X}^{(l)}$ |
-| `blocks.0.mlp.hook_pre` / `hook_post` | `pre` / `post` | MLP neurons before / after GELU | `[batch, seq, d_mlp]` | $H$, $GELU(H)$ |
-| `blocks.0.hook_mlp_out` | `mlp_out` | MLP output | `[batch, seq, d_model]` | |
-| `blocks.0.hook_resid_post` | `resid_post` | Residual stream out of the block | `[batch, seq, d_model]` | $X^{(l)}$ |
+| Full name (layer 0) | Short name | What it is | Shape |
+| --- | --- | --- | --- |
+| `hook_embed` | `embed` | Token embeddings | `[batch, seq, d_model]` |
+| `hook_pos_embed` | `pos_embed` | Positional embeddings | `[batch, seq, d_model]` |
+| `blocks.0.hook_resid_pre` | `resid_pre` | Residual stream into the block | `[batch, seq, d_model]` |
+| `blocks.0.attn.hook_q` (also `_k`, `_v`) | `q`, `k`, `v` | Queries, keys, values per head | `[batch, seq, n_heads, d_head]` |
+| `blocks.0.attn.hook_attn_scores` | `attn_scores` | Scores after scale and mask, before softmax | `[batch, n_heads, seqQ, seqK]` |
+| `blocks.0.attn.hook_pattern` | `pattern` | Attention probabilities | `[batch, n_heads, seqQ, seqK]` |
+| `blocks.0.attn.hook_z` | `z` | Weighted sum of values, per head | `[batch, seq, n_heads, d_head]` |
+| `blocks.0.hook_attn_out` | `attn_out` | Attention output, summed over heads | `[batch, seq, d_model]` |
+| `blocks.0.hook_resid_mid` | `resid_mid` | Residual stream after attention, before MLP | `[batch, seq, d_model]` |
+| `blocks.0.mlp.hook_pre` / `hook_post` | `pre` / `post` | MLP neurons before / after GELU | `[batch, seq, d_mlp]` |
+| `blocks.0.hook_mlp_out` | `mlp_out` | MLP output | `[batch, seq, d_model]` |
+| `blocks.0.hook_resid_post` | `resid_post` | Residual stream out of the block | `[batch, seq, d_model]` |
 
 Here is a useful diagram from ARENA of one attention-only block. Each box is an activation with its hook name, and the red text is its shape (without the batch dimension).
 
