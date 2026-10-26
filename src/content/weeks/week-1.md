@@ -14,26 +14,26 @@ ready: true
 
 | Section | Exercise | Importance | Time |
 | --- | --- | --- | --- |
-| 0.0 | einops operations & broadcasting | 3/5 | 45 min |
-| 0.0 | einsum | 4/5 | 15 min |
-| 0.2 | `ReLU` | 3/5 | 5 min |
-| 0.2 | `Linear` | 4/5 | 10 min |
-| 0.2 | Simple MLP | 4/5 | 15 min |
-| 0.2 | Training loop (read) and validation loop | 5/5 | 30 min |
-| 0.2 | `Conv2d` | 3/5 | 15 min |
-| 0.2 | `BatchNorm2d` | 3/5 | 20 min |
-| 0.2 | `AveragePool` | 2/5 | 5 min |
-| 0.2 | `ResidualBlock` | 4/5 | 25 min |
-| 0.2 | `BlockGroup` | 4/5 | 12 min |
-| 0.2 | `ResNet34` | 4/5 | 35 min |
-| 0.2 | Verify your model's predictions | 3/5 | 10 min |
+| 0.0 | einops operations & broadcasting | *** | 45 min |
+| 0.0 | einsum | **** | 15 min |
+| 0.2 | `ReLU` | *** | 5 min |
+| 0.2 | `Linear` | **** | 10 min |
+| 0.2 | Simple MLP | **** | 15 min |
+| 0.2 | Training loop (read) and validation loop | ***** | 30 min |
+| 0.2 | `Conv2d` | *** | 15 min |
+| 0.2 | `BatchNorm2d` | *** | 20 min |
+| 0.2 | `AveragePool` | ** | 5 min |
+| 0.2 | `ResidualBlock` | **** | 25 min |
+| 0.2 | `BlockGroup` | **** | 12 min |
+| 0.2 | `ResNet34` | **** | 35 min |
+| 0.2 | Verify your model's predictions | *** | 10 min |
 | 0.2 | Aside: hooks (read) | — | 10 min |
-| 0.3 | `opt_fn_with_sgd` | 4/5 | 15 min |
-| 0.3 | Adam | 3/5 | 20 min |
-| 0.4 | `log_back` | 3/5 | 8 min |
-| 0.4 | `unbroadcast` | 3/5 | 15 min |
-| 0.4 | `multiply_back0` and `multiply_back1` | 2/5 | 12 min |
-| 0.4 | `forward_and_back` | 4/5 | 15 min |
+| 0.3 | `opt_fn_with_sgd` | **** | 15 min |
+| 0.3 | Adam | *** | 20 min |
+| 0.4 | `log_back` | *** | 8 min |
+| 0.4 | `unbroadcast` | *** | 15 min |
+| 0.4 | `multiply_back0` and `multiply_back1` | ** | 12 min |
+| 0.4 | `forward_and_back` | **** | 15 min |
 
 As you work through these exercises (and in general going forward), if you find yourself stuck or spending way more time on an exercise than the estimate, have someone in your group peek at the answer or prompt an LLM for hints. No single exercise is worth laboring over too too much.
 

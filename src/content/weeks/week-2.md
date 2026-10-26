@@ -12,19 +12,19 @@ ready: true
 
 ## This week's exercises
 
-| Section | Exercise | Importance | Time |
+| Subsection | Exercise | Importance | Time |
 | --- | --- | --- | --- |
-| 1.1 | `LayerNorm` | 3/5 | 15 min |
-| 1.1 | `Embed` | 3/5 | 10 min |
-| 1.1 | `PosEmbed` | 3/5 | 15 min |
-| 1.1 | `apply_causal_mask` | 5/5 | 15 min |
-| 1.1 | `Attention` | 5/5 | 45 min |
-| 1.1 | `MLP` | 4/5 | 15 min |
-| 1.1 | `TransformerBlock` | 3/5 | 15 min |
-| 1.1 | `Unembed` | 3/5 | 10 min |
-| 1.1 | `DemoTransformer` | 3/5 | 15 min |
-| 1.1 | write training loop | 4/5 | 20 min |
-| 1.1 | `sample` | 3/5 | 40 min |
+| 2 | `LayerNorm` | *** | 15 min |
+| 2 | `Embed` | *** | 10 min |
+| 2 | `PosEmbed` | *** | 15 min |
+| 2 | `apply_causal_mask` | ***** | 15 min |
+| 2 | `Attention` | ***** | 45 min |
+| 2 | `MLP` | **** | 15 min |
+| 2 | `TransformerBlock` | *** | 15 min |
+| 2 | `Unembed` | *** | 10 min |
+| 2 | `DemoTransformer` | *** | 15 min |
+| 3 | write training loop | **** | 20 min |
+| 4 | `sample` | *** | 40 min |
 
 **Note: the training run itself takes extra time, so use a GPU (e.g., Colab)**. If you want some RunPod comute credits to use a different GPU, reach out to me. 
 

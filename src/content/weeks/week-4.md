@@ -16,19 +16,19 @@ All of Parts 1 and 3. For Part 2, we'll just do the setup that Part 3 needs (see
 
 Total ~2.5 hours.
 
-| Section | Exercise | Importance | Time |
+| Subsection | Exercise | Importance | Time |
 | --- | --- | --- | --- |
-| 1.2 Part 1 | Inspect your model | 3/5 | 5 min |
-| 1.2 Part 1 | How many tokens does your model guess correctly? | 3/5 | 10 min |
-| 1.2 Part 1 | Verify activations | 3/5 | 15 min |
-| 1.2 Part 2 | Setup only (see below) | — | 10 min |
-| 1.2 Part 2 | Visualise & inspect attention patterns (optional) | 3/5 | 10 min |
-| 1.2 Part 3 | Calculate induction scores with hooks | 4/5 | 20 min |
-| 1.2 Part 3 | Find induction heads in GPT2-small | 4/5 | 15 min |
-| 1.2 Part 3 | Build logit attribution tool | 4/5 | 15 min |
-| 1.2 Part 3 | Interpret logit attribution for induction heads | 4/5 | 15 min |
-| 1.2 Part 3 | Induction head ablation | 4/5 | 30 min |
-| 1.2 Part 3 | Mean ablation | 3/5 | 10 min |
+| 1 | Inspect your model | *** | 5 min |
+| 1 | How many tokens does your model guess correctly? | *** | 10 min |
+| 1 | Verify activations | *** | 15 min |
+| 2 | Setup only (see below) | — | 10 min |
+| 2 | Visualise & inspect attention patterns (optional) | *** | 10 min |
+| 3 | Calculate induction scores with hooks | **** | 20 min |
+| 3 | Find induction heads in GPT2-small | **** | 15 min |
+| 3 | Build logit attribution tool | **** | 15 min |
+| 3 | Interpret logit attribution for induction heads | **** | 15 min |
+| 3 | Induction head ablation | **** | 30 min |
+| 3 | Mean ablation | *** | 10 min |
 
 Part 3 uses a good chunk of stuff from Part 2, so you'll need to do the following in order for Part 3 to work correctly:
 
