@@ -62,9 +62,6 @@ Eval specification then turns our threat model into something we can actually me
 A first pass at a given eval design/specification usually starts broad and has to be iteratively narrowed and refined.
 
 ## Question Design
-We then need to translate our eval spec into actual sceanrios to put the model into / questions to be posed. This is a similar process of the eval spec in that we're taking something that's a bit higher-level and translating it down in something more directly measureable. Here, it's about designing the specific a condition under which we'll be able to glean direct evidence of the property/propensity we're seeking to measure. 
-
-## Question Design
 We then need to translate our eval spec into actual scenarios to put the model in / questions to pose to it. This is a similar process to writing the spec: we take something higher-level and translate it down into something directly measurable. Here, it's about designing the specific conditions under which we'd get direct evidence of the property/propensity we're trying to measure.
 
 For this we'll write multiple-choice questions. They're cheap and easy to score, but it's important to keep in mind that they really only measure what a model *says* it would do, not what it *does*. These can often come apart, but that's beyond the scope of this for now.
