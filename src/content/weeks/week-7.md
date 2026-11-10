@@ -17,13 +17,13 @@ ready: true
 | Subsection | Exercise | Importance | Time |
 | --- | --- | --- | --- |
 | 1 | Visualize attention heads | ★★★ | 10 min |
-| 2 | Forward pass on antonym dataset (`calculate_h`) | ★★★ | 15 min |
-| 2 | Intervene with h (`intervene_with_h`) | ★★★★ | 15 min |
-| 2 | Combine the last two functions (`calculate_h_and_intervene`) | ★★★ | 15 min |
+| 2 | `calculate_h` | ★★★ | 15 min |
+| 2 | `intervene_with_h` | ★★★★ | 15 min |
+| 2 | `calculate_h_and_intervene` | ★★★ | 15 min |
 | 3 | `calculate_fn_vectors_and_intervene` | ★★★★★ | 45 min |
-| 3 | Calculate the function vector (`calculate_fn_vector`) | ★★★ | 25 min |
-| 3 | Intervene with function vector, multi-token generation | ★★★★ | 20 min |
-| 4 | Replicate the steering vector results (`calculate_and_apply_steering_vector`) | ★★★★ | 40 min |
+| 3 | `calculate_fn_vector` | ★★★ | 25 min |
+| 3 | Intervene with function vector | ★★★★ | 20 min |
+| 4 | `calculate_and_apply_steering_vector` | ★★★★ | 40 min |
 
 **If you have extra time:** do "Compute change in accuracy" (15 min), then "Generalize results to another task."
 
