@@ -10,6 +10,9 @@ arena:
 ready: true
 ---
 
+***Author: Nick Meyer, nick.meyer@columbia.edu***
+
+## This week's exercises
 | Subsection | Exercise | Importance | Time |
 | --- | --- | --- | --- |
 | 1 | Generate structured MCQ outputs | *** | 20 min |

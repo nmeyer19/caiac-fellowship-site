@@ -10,6 +10,8 @@ arena:
 ready: true
 ---
 
+***Author: Nick Meyer, nick.meyer@columbia.edu***
+
 ## This week's exercises
 
 | Section | Exercise | Importance | Time |

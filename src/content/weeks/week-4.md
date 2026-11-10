@@ -10,6 +10,8 @@ arena:
 ready: true
 ---
 
+***Author: Nick Meyer, nick.meyer@columbia.edu***
+
 ## This week's exercises
 
 All of Parts 1 and 3. For Part 2, we'll just do the setup that Part 3 needs (see below).
